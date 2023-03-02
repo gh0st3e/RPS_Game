@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-deployment
+  labels:
+    app: k8s-app
+spec:
+  selector:
+    matchLabels:
+      app: k8s-user-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: k8s-user-app
+    spec:
+      containers:
+        - name: user-app
+          image: ghostfed/user_service
+          ports:
+            - containerPort: 8081

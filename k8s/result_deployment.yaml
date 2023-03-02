@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result-deployment
+  labels:
+    app: k8s-app
+spec:
+  selector:
+    matchLabels:
+      app: k8s-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: k8s-app
+    spec:
+      containers:
+        - name: result-app
+          image: ghostfed/result_service
+          ports:
+            - containerPort: 9001

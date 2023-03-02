@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "user/internal/proto";
+
+service Computer{
+  rpc CallComputer (Empty) returns(ResponseComputer){}
+}
+
+message Empty{}
+
+message ResponseComputer{
+  string value = 1;
+}

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "result/internal/proto";
+
+service Result{
+  rpc CallResult (RequestResult) returns(ResponseResult){}
+}
+
+message RequestResult{
+  string userValue = 1;
+  string computerValue = 2;
+}
+
+message ResponseResult{
+  string winner = 1;
+}
+
+
+

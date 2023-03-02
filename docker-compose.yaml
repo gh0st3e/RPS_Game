@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  userService:
+    image: user_service
+    build:
+      dockerfile: user/Dockerfile
+      context: .
+      target: runner
+    depends_on:
+      - computerService
+      - resultService
+    expose:
+      - 8086
+    ports:
+      - "8081:8081"
+    volumes:
+      - .:/opt/app
+    restart: always
+  computerService:
+    image: computer_service
+    build:
+      dockerfile: computer/Dockerfile
+      context: .
+      target: runner
+    ports:
+      - "9000:9000"
+    volumes:
+      - .:/opt/app
+    restart: always
+  resultService:
+    image: result_service
+    build:
+      dockerfile: result/Dockerfile
+      context: .
+      target: runner
+    ports:
+      - "9001:9001"
+    volumes:
+      - .:/opt/app
+    restart: always
